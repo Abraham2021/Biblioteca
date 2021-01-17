@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% block titulo %}
+    Creacion de Autores
+{% endblock titulo %}
+
+{% block body %}
+  <form class="for" method="POST">
+    {% csrf_token %}
+    {% if error %}
+      <h2>{{ error }}</h2>
+    {% else %}
+    <!--{{ autor_form.as_p }}
+    <button class="btn btn-primary" type="submit">Crear</button>
+    -->
+    <div class="card">
+      <div class="card-header">
+        <strong>Formulario de Registro</strong>
+      </div>
+      <div class="card-body card-block">
+         <form method="post" enctype="multipart/form-data" class="form-horizontal " action="#">
+          <div class="row form-group">
+              <div class="col col-md-3">{{ form.nombre.label}}</div>
+              <div class="col-12 col-md-9">{{ form.nombre }}</div>
+          </div>
+
+          <div class="row form-group">
+              <div class="col col-md-3">{{ form.apellidos.label }}</div>
+              <div class="col-12 col-md-9">{{ form.apellidos }}</div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col col-md-3">{{ form.nacionalidad.label }}</div>
+            <div class="col-12 col-md-9">{{ form.nacionalidad }}</div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col col-md-3">{{ form.descripcion.label }}</div>
+            <div class="col-12 col-md-9">{{ form.descripcion }}</div>
+          </div>
+          
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Registro</button>
+            <button type="reset" class="btn btn-danger">Cancelar</button>
+          </div>
+      
+        </form>
+      </div>
+    </div>
+  
+
+    {% endif %}
+   
+
+
+  </form>
+{% endblock body %}
+    

@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+    Listado Libro
+{% endblock titulo %}
+
+{% block body %}
+
+  {% if libros %}
+  
+
+  <div class="scroll1">
+    
+    <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Fecha de Publicacion</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+            <tr>
+                <td>{{ libro.id }}</td>
+                <td>{{ libro.titulo}}</td>
+                <td>
+                  {% for auto in libro.autor_id.all %}
+                    <li style="list-style: none; color: #0099ff; ">{{ auto.nombre }}</li>
+                  {% endfor %}
+                </td>
+                <td>{{ libro.fecha_publicacion }}</td>
+                
+                <td>
+                    <a class="btn btn-primary" href="{% url 'libro:editar_libro' libro.id %}">Editar</a>
+                    <a class="btn btn-danger" href="{% url 'libro:eliminar_libro' libro.id %}">Eliminar</a>
+                </td>
+            </tr>
+         {% endfor %}
+        </tbody>
+      </table>
+
+  </div>
+  {% else %}
+     <h1>No existe registro de Libro</h1>
+  {% endif %}
+
+    
+    <div class="card-body card-block" style="margin-top: 0px;">
+      <div class="card-header">
+        <strong>Formulario de Registro</strong>
+      </div>
+       <form method="post" enctype="multipart/form-data" class="form-horizontal " >
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button class="btn btn-primary" type="submit">Guardar</button>
+      </form>
+    </div>
+  
+
+{% endblock body %}

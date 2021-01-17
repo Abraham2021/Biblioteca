@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% block titulo %}
+    Creacion de Libro
+{% endblock titulo %}
+
+{% block body %}
+  <form class="for" method="POST">
+    {% csrf_token %}
+    {% if error %}
+      <h2>{{ error }}</h2>
+    {% else %}
+    <!--{{ autor_form.as_p }}
+    <button class="btn btn-primary" type="submit">Crear</button>
+    -->
+    <div class="card">
+      <div class="card-header">
+        <strong>Formulario de Registro</strong>
+      </div>
+      <div class="card-body card-block">
+         <form method="post" enctype="multipart/form-data" class="form-horizontal " action="#">
+          {{ form.as_p}}
+          <button class="btn btn-primary" type="submit">Guardar</button>
+        </form>
+      </div>
+    </div>
+  
+
+    {% endif %}
+   
+
+
+  </form>
+{% endblock body %}
+    
